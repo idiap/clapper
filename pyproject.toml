@@ -27,8 +27,8 @@ dependencies = ["click>=8", "tomli", "tomli-w", "xdg"]
 [project.urls]
 documentation = "https://clapper.readthedocs.io/en/latest/"
 homepage = "https://pypi.org/project/clapper"
-repository = "https://gitlab.idiap.ch/software/clapper"
-changelog = "https://gitlab.idiap.ch/software/clapper/-/releases"
+repository = "https://github.com/idiap/clapper"
+changelog = "https://github.com/idiap/clapper/releases"
 
 [project.optional-dependencies]
 qa = ["pre-commit"]
