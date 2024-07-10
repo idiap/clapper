@@ -20,6 +20,7 @@ jobs:
       matrix:
         os: [ubuntu-22.04, macos-14]
         pixi_environment: [test, test-alternative]  # latest and previous python
+    runs-on: ${{ matrix.os }}
     permissions:
       # Gives the action the necessary permissions for publishing new
       # comments in pull requests.
