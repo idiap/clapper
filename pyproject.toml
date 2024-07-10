@@ -211,3 +211,6 @@ convention = "numpy"
 addopts = ["--cov=clapper", "--cov-report=term-missing", "--import-mode=append"]
 junit_logging = "all"
 junit_log_passing_tests = false
+
+[tool.coverage.run]
+relative_files = true
