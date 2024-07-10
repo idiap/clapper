@@ -13,10 +13,6 @@ on:
       [ "main" ]
     types:
       - opened
-    paths:
-      - "docs/**"
-      - "src/**"  # Update to the Python API pages
-      - ".github/workflows/doc-preview.yaml"
 
 permissions:
   pull-requests: write
