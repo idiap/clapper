@@ -5,10 +5,9 @@ SPDX-License-Identifier: BSD-3-Clause
 -->
 
 [![latest-docs](https://img.shields.io/badge/docs-latest-orange)](https://clapper.readthedocs.io/en/latest/)
-<!-- [![build](https://TODO/clapper/badges/main/pipeline-badge.svg)](https://github.com/idiap/clapper/actions) -->
-<!-- [![coverage](https://TODO/clapper/badges/main/coverage-badge.svg)](https://www.idiap.ch/software/biosignal/docs/software/clapper/main/coverage/index.html) -->
+[![tests](https://github.com/clapper/main/actions/workflows/tests.svg)](https://github.com/idiap/clapper/actions)
+[![coverage](https://raw.githubusercontent.com/idiap/clapper/python-coverage-comment-action-data/badge.svg)](https://htmlpreview.github.io/?https://github.com/idiap/clapper/python-coverage-comment-action-data/htmlcov/index.html)
 [![repository](https://img.shields.io/badge/github-latest-darkblue)](https://github.com/idiap/clapper)
-
 
 # Configuration Support for Python Packages and CLIs
 
