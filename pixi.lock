@@ -1430,9 +1430,9 @@ packages:
   timestamp: 1698833765762
 - kind: pypi
   name: clapper
-  version: 1.1.2.dev10+g6bb24e0.d20240710
+  version: 1.1.2.dev15+g1a30b3e.d20240710
   path: .
-  sha256: f66ba0e547363f58728e7a6a4b19aa05c99007c1c4ef78aefa7234e5a5743abf
+  sha256: 2e759545cc3e1990a0c3c55e04fcf450e6b3c61c8e20c3fec8d0b92697342f91
   requires_dist:
   - click>=8
   - tomli
