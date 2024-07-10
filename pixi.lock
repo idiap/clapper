@@ -789,7 +789,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xdg-6.0.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/xz-5.2.6-h57fd34a_0.tar.bz2
       - pypi: .
-  test-ci-alternative:
+  test-alternative:
     channels:
     - url: https://conda.anaconda.org/conda-forge/
     indexes:
@@ -1430,9 +1430,9 @@ packages:
   timestamp: 1698833765762
 - kind: pypi
   name: clapper
-  version: 1.1.2.dev7+g85b2880.d20240710
+  version: 1.1.2.dev10+g6bb24e0.d20240710
   path: .
-  sha256: 844fe6e6b314ba6013cfff6275e0965612f1811f0fd3745ac556eec66a4cb4ef
+  sha256: f66ba0e547363f58728e7a6a4b19aa05c99007c1c4ef78aefa7234e5a5743abf
   requires_dist:
   - click>=8
   - tomli
