@@ -108,7 +108,7 @@ pytest-cov = "*"
 
 [tool.pixi.feature.test.tasks]
 test = "pytest -sv tests/"
-test-ci = "pytest -sv --cov-branch --cov-report xml tests/"
+test-ci = "pytest -sv --cov-branch tests/"
 
 [tool.pixi.feature.dev.dependencies]
 pdbpp = "*"
@@ -209,8 +209,6 @@ convention = "numpy"
 
 [tool.pytest.ini_options]
 addopts = ["--cov=clapper", "--cov-report=term-missing", "--import-mode=append"]
-junit_logging = "all"
-junit_log_passing_tests = false
 
 [tool.coverage.run]
 relative_files = true
