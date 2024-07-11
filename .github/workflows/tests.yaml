@@ -21,14 +21,6 @@ jobs:
         os: [ubuntu-22.04, macos-14]
         pixi_environment: [test, test-alternative]  # latest and previous python
     runs-on: ${{ matrix.os }}
-    permissions:
-      # Gives the action the necessary permissions for publishing new
-      # comments in pull requests.
-      pull-requests: write
-      # Gives the action the necessary permissions for pushing data to the
-      # python-coverage-comment-action branch, and for editing existing
-      # comments (to avoid publishing multiple comments in the same PR)
-      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -68,11 +60,11 @@ jobs:
         with:
           pattern: coverage-*
           merge-multiple: true
-      - name: Generate merged coverage comment
+      - name: Generate and try posting merged coverage comment
         uses: py-cov-action/python-coverage-comment-action@v3
         id: coverage_comment
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           MERGE_COVERAGE_FILES: true
       - name: Store Pull Request comment to be posted
         uses: actions/upload-artifact@v4
