@@ -55,6 +55,8 @@ jobs:
       # comments (to avoid publishing multiple comments in the same PR)
       contents: write
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Retrieve coverage artifacts
         uses: actions/download-artifact@v4
         id: download
