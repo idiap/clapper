@@ -40,19 +40,45 @@ jobs:
           pixi-version: v0.25.0
           environments: ${{ matrix.pixi_environment }}
       - name: Run Tests
-        run: pixi run test
-      - name: Generate coverage comment  # Published after job success (coverage.yaml)
-        id: coverage_comment
-        uses: py-cov-action/python-coverage-comment-action@v3
+        run: pixi run test-ci
+      - name: Rename the coverage file
+        run: mv .coverage .coverage.${{ matrix.pixi_environment }}-${{ matrix.os }}
+      - name: Store coverage report
+        uses: actions/upload-artifact@v4
         with:
-          GITHUB_TOKEN: ${{ github.token }}
+          # File renamed for thix matrix element
+          name: coverage-${{ matrix.pixi_environment }}-${{ matrix.os }}
+          path: .coverage.${{ matrix.pixi_environment }}-${{ matrix.os }}
+
+
+  merge_coverage:
+    name: Merge the coverage comments from multiple coverages
+    runs-on: ubuntu-22.04
+    permissions:
+      # Gives the action the necessary permissions for publishing new
+      # comments in pull requests.
+      pull-requests: write
+      # Gives the action the necessary permissions for editing existing
+      # comments (to avoid publishing multiple comments in the same PR)
+      contents: write
+    steps:
+      - name: Retrieve coverage artifacts
+        uses: actions/download-artifact@v4
+        id: download
+        with:
+          pattern: coverage-*
+          merge-multiple: true
+      - name: Generate merged coverage comment
+        uses: py-cov-action/python-coverage-comment-action@v3
+        id: coverage_comment
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_COVERAGE_FILES: true
       - name: Store Pull Request comment to be posted
         uses: actions/upload-artifact@v4
         if: steps.coverage_comment.outputs.COMMENT_FILE_WRITTEN == 'true'
         with:
-          # If you use a different name, update COMMENT_ARTIFACT_NAME accordingly
           name: python-coverage-comment-action
-          # If you use a different name, update COMMENT_FILENAME accordingly
           path: python-coverage-comment-action.txt
 
   doc:
