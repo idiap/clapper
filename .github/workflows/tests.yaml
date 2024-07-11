@@ -33,8 +33,8 @@ jobs:
           environments: ${{ matrix.pixi_environment }}
       - name: Run Tests
         run: pixi run test-ci
-      - name: Rename the coverage file
-        run: mv .coverage .coverage.${{ matrix.pixi_environment }}-${{ matrix.os }}
+        env:
+          COVERAGE_FILE: ".coverage.${{ matrix.pixi_environment }}-${{ matrix.os }}"
       - name: Store coverage report
         uses: actions/upload-artifact@v4
         with:
