@@ -14,8 +14,8 @@ on:
       - completed
 
 jobs:
-  test:
-    name: Send (or modify) a coverage comment
+  coverage-comment:
+    name: Send (or modify) a coverage comment to the PR
     runs-on: ubuntu-22.04
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
     permissions:
@@ -37,6 +37,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PR_RUN_ID: ${{ github.event.workflow_run.id }}
+          MERGE_COVERAGE_FILES: true
           # Update those if you changed the default values:
           # COMMENT_ARTIFACT_NAME: python-coverage-comment-action
           # COMMENT_FILENAME: python-coverage-comment-action.txt
