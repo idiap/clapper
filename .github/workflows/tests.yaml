@@ -8,8 +8,8 @@ name: Execute code tests
 on:
   push:
     branches: [ "main" ]
+    tags: ["*"]
   pull_request:
-    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -60,11 +60,11 @@ jobs:
         with:
           pattern: coverage-*
           merge-multiple: true
-      - name: Generate and try posting merged coverage comment
-        uses: py-cov-action/python-coverage-comment-action@v3
+      - name: Coverage comment
         id: coverage_comment
+        uses: py-cov-action/python-coverage-comment-action@v3
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           MERGE_COVERAGE_FILES: true
       - name: Store Pull Request comment to be posted
         uses: actions/upload-artifact@v4
