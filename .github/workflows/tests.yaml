@@ -45,6 +45,7 @@ jobs:
 
   merge-coverage:
     name: Merge the coverage reports from multiple coverages
+    needs: tests
     runs-on: ubuntu-22.04
     permissions:
       # Gives the action the necessary permissions for publishing new
