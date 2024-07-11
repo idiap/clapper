@@ -53,3 +53,22 @@ jobs:
           path: dist
       - name: Publish package distributions to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    name: Upload the release package to GitHub Release
+    needs:
+      - pypi-publish
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write  # IMPORTANT: mandatory for making GitHub Releases
+    steps:
+      - name: Retrieve the package from GitHub actions artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-dist
+          path: dist
+      - name: Upload the release package to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        # Upload to GitHub Release using the `gh` CLI.
+        run: gh release upload '${{ github.ref_name }}' dist/** --repo '${{ github.repository }}'
