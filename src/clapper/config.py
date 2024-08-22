@@ -3,13 +3,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 """Functionality to implement python-based config file parsing and loading."""
 
+import importlib.util
 import logging
 import pathlib
-import pkgutil
 import types
 import typing
 
-from importlib.abc import FileLoader
 from importlib.metadata import EntryPoint, entry_points
 
 logger = logging.getLogger(__name__)
@@ -73,11 +72,11 @@ def _get_module_filename(module_name: str) -> str | None:
         The path that corresponds to file implementing the provided module name
     """
     try:
-        loader = pkgutil.get_loader(module_name)
-        if isinstance(loader, FileLoader):
-            return str(loader.path)
-        return None
-    except (ImportError,):
+        module_spec = importlib.util.find_spec(module_name)
+        if module_spec is None:
+            return None
+        return module_spec.origin
+    except (ModuleNotFoundError,):
         return None
 
 
