@@ -26,6 +26,7 @@ def setup(
     format: str = "[%(levelname)s] %(message)s (%(name)s, %(asctime)s)",  # noqa: A002
     low_level_stream: typing.TextIO = sys.stdout,
     high_level_stream: typing.TextIO = sys.stderr,
+    formatter: logging.Formatter | None = None,
 ) -> logging.Logger:
     """Return a logger object that is ready for console logging.
 
@@ -40,10 +41,13 @@ def setup(
        and above to the text-I/O stream ``high_level_stream``, with an internal
        level set to ``logging.WARNING``.
 
-    A new formatter, with the format string as defined by the ``format``
-    argument is set on both handlers.  In this way, the global logger level can
-    still be controlled from one single place.  If output is generated, then it
-    is sent to the right stream.
+    If you do not provide a ``formatter`` argument, a new formatter, with the
+    format string as defined by the ``format`` argument is set on both handlers.
+    In this way, the global logger level can still be controlled from one single
+    place.  If output is generated, then it is sent to the right stream.
+
+    You can provide a custom formatter if ``format`` is not sufficient to
+    customize the looks of your logs (e.g. you want to add colors).
 
     Parameters
     ----------
@@ -52,11 +56,13 @@ def setup(
     format
         The format of the logs, see :py:class:`logging.LogRecord` for more
         details. By default, the log contains the logger name, the log time,
-        the log level and the massage.
+        the log level and the message. *Ignored if ``formatter`` is set*.
     low_level_stream
         The stream where to output info messages and below
     high_level_stream
         The stream where to output warning messages and above
+    formatter
+        A formatter to replace the default :py:class:`logging.Formatter`.
 
     Returns
     -------
@@ -66,7 +72,8 @@ def setup(
 
     logger = logging.getLogger(logger_name)
 
-    formatter = logging.Formatter(format)
+    if formatter is None:
+        formatter = logging.Formatter(format)
 
     handlers_installed = {k.name: k for k in logger.handlers}
     debug_logger_name = f"debug_info+{logger_name}"
