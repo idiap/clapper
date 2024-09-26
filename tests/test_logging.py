@@ -35,6 +35,32 @@ def test_logger_setup():
     assert hi.getvalue() == "warning message\nerror message\n"
 
 
+def test_logger_setup_formatter():
+    log_output = io.StringIO()
+
+    custom_formatter = logging.Formatter(fmt="custom {message:s}", style="{")
+
+    logger = clapper.logging.setup(
+        "awesome.logger",
+        low_level_stream=log_output,
+        high_level_stream=log_output,
+        formatter=custom_formatter,
+    )
+    logger.setLevel(logging.DEBUG)
+
+    logger.debug("debug message")
+    logger.info("info message")
+    logger.warning("warning message")
+    logger.error("error message")
+
+    assert log_output.getvalue() == (
+        "custom debug message\n"
+        "custom info message\n"
+        "custom warning message\n"
+        "custom error message\n"
+    )
+
+
 def test_logger_click_no_v():
     lo = io.StringIO()
     hi = io.StringIO()
