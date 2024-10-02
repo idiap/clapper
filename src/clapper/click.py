@@ -109,7 +109,7 @@ def verbosity_option(
                 f"option as often as desired (e.g. '-vvv' for debug)."
             ),
             callback=callback,
-            is_eager=True,  # Ensure the logger is set for ResourceOptions loading
+            is_eager=kwargs.get("cls", None) is not ResourceOption,
             **kwargs,
         )(f)
 
