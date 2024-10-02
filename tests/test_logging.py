@@ -243,7 +243,10 @@ def cli_config():
     @verbosity_option(logger, expose_value=False)
     def cli(**_):
         """This is the documentation provided by the user."""
-        pass
+        logger.debug("App Debug level message")
+        logger.info("App Info level message")
+        logger.warning("App Warning level message")
+        logger.error("App Error level message")
 
     return (cli, messages)
 
@@ -255,7 +258,7 @@ def test_logger_click_option_config_q(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["--cmp", "complex-var"])
-    expected = "[ERROR] Error level message\n"
+    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -264,7 +267,12 @@ def test_logger_click_option_config_v(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["--cmp", "complex-var", "-v"])
-    expected = "[WARNING] Warning level message\n" "[ERROR] Error level message\n"
+    expected = (
+        "[WARNING] Warning level message\n"
+        "[ERROR] Error level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -277,6 +285,9 @@ def test_logger_click_option_config_vv(cli_config):
         "[INFO] Info level message\n"
         "[WARNING] Warning level message\n"
         "[ERROR] Error level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
     )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
@@ -291,17 +302,23 @@ def test_logger_click_option_config_vvv(cli_config):
         "[INFO] Info level message\n"
         "[WARNING] Warning level message\n"
         "[ERROR] Error level message\n"
+        "[DEBUG] App Debug level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
     )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue().endswith(expected)
 
 
 # Loading configs using ConfigCommand
+
+
 def test_logger_click_command_config_q(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["complex"])
-    expected = "[ERROR] Error level message\n"
+    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -310,7 +327,12 @@ def test_logger_click_command_config_v(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["complex", "-v"])
-    expected = "[WARNING] Warning level message\n" "[ERROR] Error level message\n"
+    expected = (
+        "[WARNING] Warning level message\n"
+        "[ERROR] Error level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -323,6 +345,9 @@ def test_logger_click_command_config_vv(cli_config):
         "[INFO] Info level message\n"
         "[WARNING] Warning level message\n"
         "[ERROR] Error level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
     )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
@@ -337,6 +362,150 @@ def test_logger_click_command_config_vvv(cli_config):
         "[INFO] Info level message\n"
         "[WARNING] Warning level message\n"
         "[ERROR] Error level message\n"
+        "[DEBUG] App Debug level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
     )
     assert result.exit_code == 0, result.output
     assert log_output.getvalue().endswith(expected)
+
+
+# Verbosity option set in config file is ignored (not a ResourceOption)
+
+
+def test_logger_click_command_config_q_plus_config(cli_config):
+    cli, log_output = cli_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["verbose-config", "complex"])
+    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+def test_logger_click_command_config_v_plus_config(cli_config):
+    cli, log_output = cli_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["verbose-config", "complex", "-v"])
+    expected = (
+        "[WARNING] Warning level message\n"
+        "[ERROR] Error level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+# Testing verbosity option as config option (legacy mode)
+# The logging level will not be correct in the config files, but can be set as a config.
+
+
+@pytest.fixture
+def cli_verbosity_config():
+    messages = io.StringIO()
+    logger = clapper.logging.setup(
+        "clapper_test",
+        format="[%(levelname)s] %(message)s",
+        low_level_stream=messages,
+        high_level_stream=messages,
+    )
+    logger.setLevel("ERROR")  # Enforce a default level
+
+    @click.command(entry_point_group="clapper.test.config", cls=ConfigCommand)
+    @click.option("--cmp", entry_point_group="clapper.test.config", cls=ResourceOption)
+    @verbosity_option(logger, expose_value=False, cls=ResourceOption)
+    def cli(**_):
+        """This is the documentation provided by the user."""
+        logger.debug("App Debug level message")
+        logger.info("App Info level message")
+        logger.warning("App Warning level message")
+        logger.error("App Error level message")
+
+    return (cli, messages)
+
+
+def test_logger_click_option_config_verbose_as_config_q(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--cmp", "complex-var"])
+    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+def test_logger_click_option_config_verbose_as_config_v(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--cmp", "complex-var", "-v"])
+    expected = (
+        "[ERROR] Error level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+def test_logger_click_option_config_verbose_as_config_vv(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--cmp", "complex-var", "-vv"])
+    expected = (
+        "[ERROR] Error level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+def test_logger_click_option_config_verbose_as_config_vvv(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["--cmp", "complex-var", "-vvv"])
+    expected_start = "[ERROR] Error level message\n"
+    expected_end = (
+        "[DEBUG] App Debug level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    output = log_output.getvalue()
+    assert output.startswith(expected_start)
+    assert output.endswith(expected_end)
+
+
+# Verbosity option set in config file is handled (verbosity_option is a ResourceOption)
+
+
+def test_logger_option_config_verbose_as_config_q_plus_config(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["verbose-config", "complex"])
+    expected = (
+        "[ERROR] Error level message\n"
+        "[INFO] App Info level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
+
+
+# specifying the verbosity option in the CLI overrides the option
+
+
+def test_logger_option_config_verbose_as_config_v_plus_config(cli_verbosity_config):
+    cli, log_output = cli_verbosity_config
+    runner = CliRunner()
+    result = runner.invoke(cli, ["verbose-config", "complex", "-v"])
+    expected = (
+        "[ERROR] Error level message\n"
+        "[WARNING] App Warning level message\n"
+        "[ERROR] App Error level message\n"
+    )
+    assert result.exit_code == 0, result.output
+    assert log_output.getvalue() == expected
