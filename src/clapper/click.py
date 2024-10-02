@@ -58,6 +58,12 @@ def verbosity_option(
     * 2 (``-vv``): ``logger.setLevel(logging.INFO)``
     * 3 (``-vvv`` or more): ``logger.setLevel(logging.DEBUG)``
 
+    The verbosity level specified in this option will also be set during the loading of
+    the ``ResourceOption`` or ``CommandConfig`` configuration files  **unless**
+    ``verbosity_option`` is a ``ResourceOption`` itself. If this is the case, the
+    logging level during the configuration loading will be the default level of the
+    logger and the option will only effect the logging after the options handling.
+
 
     Arguments:
 
@@ -68,7 +74,7 @@ def verbosity_option(
         name: Long name of the option.  If not set, then use ``verbose`` --
             this will also become the name of the contextual parameter for click.
 
-        dlft: The default verbosity level to use (defaults to 0).
+        dflt: The default verbosity level to use (defaults to 0).
 
         **kwargs: Further keyword-arguments to be forwarded to the underlying
             :py:func:`click.option`
@@ -102,11 +108,11 @@ def verbosity_option(
             default=dflt,
             show_default=True,
             help=(
-                f"Increase the verbosity level from 0 (only error and "
-                f"critical) messages will be displayed, to 1 (like 0, but adds "
-                f"warnings), 2 (like 1, but adds info messags), and 3 (like 2, "
-                f"but also adds debugging messages) by adding the --{name} "
-                f"option as often as desired (e.g. '-vvv' for debug)."
+                f"Increase the verbosity level from 0 (only error and critical) "
+                f"messages will be displayed, to 1 (like 0, but adds warnings), 2 "
+                f"(like 1, but adds info messages), and 3 (like 2, but also adds "
+                f"debugging messages) by adding the --{name} option as often as "
+                f"desired (e.g. '-vvv' for debug)."
             ),
             callback=callback,
             is_eager=kwargs.get("cls", None) is not ResourceOption,
@@ -380,7 +386,7 @@ class ResourceOption(click.Option):
     ) -> tuple[typing.Any, ParameterSource]:
         """Retrieve value for parameter from appropriate context.
 
-        This method will retrive the value of its own parameter from the
+        This method will retrieve the value of its own parameter from the
         appropriate context, by trying various sources.
 
         Parameters
@@ -645,7 +651,7 @@ def config_group(
     """Add a command group to list/describe/copy job configurations.
 
     This decorator adds a whole command group to a user predefined function
-    which is part of the user's CLI.  The command group provdes an interface to
+    which is part of the user's CLI.  The command group provides an interface to
     list, fully describe or locally copy configuration files distributed with
     the package.  Commands accept both entry-point or module names to be
     provided as input.
