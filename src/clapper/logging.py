@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: Copyright © 2022 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Amir Mohammadi  <amir.mohammadi@idiap.ch>
 #
 # SPDX-License-Identifier: BSD-3-Clause
+
 """:py:class:`logging.Logger` setup and stream separation."""
 
 import logging

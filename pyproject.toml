@@ -1,4 +1,5 @@
 # SPDX-FileCopyrightText: Copyright © 2022 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Amir Mohammadi  <amir.mohammadi@idiap.ch>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
@@ -13,7 +14,7 @@ requires-python = ">=3.10"
 description = "Configuration Support for Python Packages and CLIs"
 readme = "README.md"
 license = "BSD-3-Clause"
-authors = [{ name = "Andre Anjos", email = "andre.anjos@idiap.ch" }]
+authors = [{ name = "Andre Anjos", email = "andre.anjos@idiap.ch" }, { name = "Amir Mohammadi", email = "amir.mohammadi@idiap.ch" }]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
