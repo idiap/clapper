@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: Copyright © 2022 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Amir Mohammadi  <amir.mohammadi@idiap.ch>
 #
 # SPDX-License-Identifier: BSD-3-Clause
+
 """Functionality to implement python-based config file parsing and loading."""
 
 import importlib.util

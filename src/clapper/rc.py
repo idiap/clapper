@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: Copyright © 2022 Idiap Research Institute <contact@idiap.ch>
+# SPDX-FileContributor: Amir Mohammadi  <amir.mohammadi@idiap.ch>
 #
 # SPDX-License-Identifier: BSD-3-Clause
+
 """Implements a global configuration system setup and readout."""
 
 import collections.abc
