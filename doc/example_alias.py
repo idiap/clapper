@@ -7,8 +7,9 @@
 # essential packages needed to start the CLI.  Defer all other imports to
 # within the function implementing the command.
 
-import clapper.click
 import click
+
+import clapper.click
 
 
 @click.group(cls=clapper.click.AliasedGroup)

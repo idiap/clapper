@@ -8,6 +8,8 @@ import logging
 
 import click
 
+from click.testing import CliRunner
+
 from clapper.click import (
     AliasedGroup,
     ConfigCommand,
@@ -15,7 +17,6 @@ from clapper.click import (
     log_parameters,
     verbosity_option,
 )
-from click.testing import CliRunner
 
 
 def test_prefix_aliasing():

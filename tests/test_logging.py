@@ -5,12 +5,14 @@
 import io
 import logging
 
-import clapper.logging
 import click
 import pytest
 
-from clapper.click import ConfigCommand, ResourceOption, verbosity_option
 from click.testing import CliRunner
+
+import clapper.logging
+
+from clapper.click import ConfigCommand, ResourceOption, verbosity_option
 
 
 def test_logger_setup():
@@ -258,7 +260,7 @@ def test_logger_click_option_config_q(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["--cmp", "complex-var"])
-    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    expected = "[ERROR] Error level message\n[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -318,7 +320,7 @@ def test_logger_click_command_config_q(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["complex"])
-    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    expected = "[ERROR] Error level message\n[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -378,7 +380,7 @@ def test_logger_click_command_config_q_plus_config(cli_config):
     cli, log_output = cli_config
     runner = CliRunner()
     result = runner.invoke(cli, ["verbose-config", "complex"])
-    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    expected = "[ERROR] Error level message\n[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
@@ -429,7 +431,7 @@ def test_logger_click_option_config_verbose_as_config_q(cli_verbosity_config):
     cli, log_output = cli_verbosity_config
     runner = CliRunner()
     result = runner.invoke(cli, ["--cmp", "complex-var"])
-    expected = "[ERROR] Error level message\n" "[ERROR] App Error level message\n"
+    expected = "[ERROR] Error level message\n[ERROR] App Error level message\n"
     assert result.exit_code == 0, result.output
     assert log_output.getvalue() == expected
 
