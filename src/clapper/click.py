@@ -735,7 +735,7 @@ def config_group(
                 )
 
                 # set-up printing options
-                print_string = "    %%-%ds   %%s" % (longest_name_length,)
+                print_string = f"    %-{longest_name_length}s   %s"
                 # 79 - 4 spaces = 75 (see string above)
                 description_leftover = 75 - longest_name_length
 
