@@ -8,10 +8,11 @@ import io
 
 import pytest
 
+from click.testing import CliRunner
+
 from clapper.click import config_group
 from clapper.config import load, mod_to_context
 from clapper.logging import setup as logger_setup
-from click.testing import CliRunner
 
 
 def test_basic(datadir):

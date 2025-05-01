@@ -152,7 +152,7 @@ class UserDefaults(collections.abc.MutableMapping):
                 if not isinstance(base, dict):
                     raise KeyError(
                         f"You are trying to set configuration key "
-                        f"{k}, but {'.'.join(parts[:(n + 1)])} is already a "
+                        f"{k}, but {'.'.join(parts[: (n + 1)])} is already a "
                         f"variable set in the file, and not a section"
                     )
             base[parts[-1]] = v

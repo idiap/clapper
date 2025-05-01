@@ -11,9 +11,10 @@ import shutil
 
 import pytest
 
+from click.testing import CliRunner
+
 from clapper.click import user_defaults_group
 from clapper.rc import UserDefaults
-from click.testing import CliRunner
 
 
 def _check_userdefaults_ex1_contents(rc):
