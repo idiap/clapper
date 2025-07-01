@@ -483,7 +483,7 @@ class AliasedGroup(click.Group):
     just set ``cls=AliasedGroup`` parameter in click.group decorator.
     """
 
-    def get_command(self, ctx, cmd_name):
+    def get_command(self, ctx, cmd_name):  # noqa: RET503
         """get_command with prefix aliasing."""
         rv = click.Group.get_command(self, ctx, cmd_name)
         if rv is not None:
@@ -495,7 +495,7 @@ class AliasedGroup(click.Group):
         if len(matches) == 1:
             return click.Group.get_command(self, ctx, matches[0])
 
-        ctx.fail(f"Too many matches: {', '.join(sorted(matches))}")  # noqa: RET503
+        ctx.fail(f"Too many matches: {', '.join(sorted(matches))}")
 
 
 def user_defaults_group(
