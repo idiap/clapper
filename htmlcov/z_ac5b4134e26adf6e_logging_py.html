@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Coverage for src/clapper/logging.py: 94%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
-    <link rel="stylesheet" href="style_cb_81f8c14c.css" type="text/css">
+    <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
 </head>
 <body class="pyfile">
@@ -66,8 +66,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="z_ac5b4134e26adf6e_rc_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.9.1">coverage.py v7.9.1</a>,
-            created at 2025-07-01 07:56 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.0">coverage.py v7.10.0</a>,
+            created at 2025-08-07 15:53 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -108,12 +108,12 @@
     <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t"><span class="key">def</span> <span class="nam">setup</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">    <span class="nam">logger_name</span><span class="op">:</span> <span class="nam">str</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">    <span class="nam">format</span><span class="op">:</span> <span class="nam">str</span> <span class="op">=</span> <span class="str">"[%(levelname)s] %(message)s (%(name)s, %(asctime)s)"</span><span class="op">,</span>  <span class="com"># noqa: A002</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t">    <span class="nam">low_level_stream</span><span class="op">:</span> <span class="nam">typing</span><span class="op">.</span><span class="nam">TextIO</span> <span class="op">=</span> <span class="nam">sys</span><span class="op">.</span><span class="nam">stdout</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t">    <span class="nam">high_level_stream</span><span class="op">:</span> <span class="nam">typing</span><span class="op">.</span><span class="nam">TextIO</span> <span class="op">=</span> <span class="nam">sys</span><span class="op">.</span><span class="nam">stderr</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t31" href="#t31">31</a></span><span class="t">    <span class="nam">formatter</span><span class="op">:</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Formatter</span> <span class="op">|</span> <span class="key">None</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t32" href="#t32">32</a></span><span class="t"><span class="op">)</span> <span class="op">-></span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Logger</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">    <span class="nam">logger_name</span><span class="op">:</span> <span class="nam">str</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">    <span class="nam">format</span><span class="op">:</span> <span class="nam">str</span> <span class="op">=</span> <span class="str">"[%(levelname)s] %(message)s (%(name)s, %(asctime)s)"</span><span class="op">,</span>  <span class="com"># noqa: A002</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t">    <span class="nam">low_level_stream</span><span class="op">:</span> <span class="nam">typing</span><span class="op">.</span><span class="nam">TextIO</span> <span class="op">=</span> <span class="nam">sys</span><span class="op">.</span><span class="nam">stdout</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t">    <span class="nam">high_level_stream</span><span class="op">:</span> <span class="nam">typing</span><span class="op">.</span><span class="nam">TextIO</span> <span class="op">=</span> <span class="nam">sys</span><span class="op">.</span><span class="nam">stderr</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t31" href="#t31">31</a></span><span class="t">    <span class="nam">formatter</span><span class="op">:</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Formatter</span> <span class="op">|</span> <span class="key">None</span> <span class="op">=</span> <span class="key">None</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t32" href="#t32">32</a></span><span class="t"><span class="op">)</span> <span class="op">-></span> <span class="nam">logging</span><span class="op">.</span><span class="nam">Logger</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t33" href="#t33">33</a></span><span class="t">    <span class="str">"""Return a logger object that is ready for console logging.</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t34" href="#t34">34</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t35" href="#t35">35</a></span><span class="t"><span class="str">    Retrieves (as with :py:func:`logging.getLogger()`) the given logger, and</span>&nbsp;</span><span class="r"></span></p>
@@ -167,8 +167,8 @@
     <p class="pln"><span class="n"><a id="t83" href="#t83">83</a></span><span class="t">    <span class="com"># First check that logger with a matching name or stream is not already</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t84" href="#t84">84</a></span><span class="t">    <span class="com"># there before attaching a new one.</span>&nbsp;</span><span class="r"></span></p>
     <p class="par run show_par"><span class="n"><a id="t85" href="#t85">85</a></span><span class="t">    <span class="key">if</span> <span class="op">(</span><span class="nam">debug_logger_name</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">handlers_installed</span><span class="op">)</span> <span class="key">or</span> <span class="op">(</span>&nbsp;</span><span class="r"><span class="annotate short">85&#x202F;&#x219B;&#x202F;95</span><span class="annotate long">line 85 didn't jump to line 95 because the condition on line 85 was always true</span></span></p>
-    <p class="pln"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">        <span class="nam">getattr</span><span class="op">(</span><span class="nam">handlers_installed</span><span class="op">[</span><span class="nam">debug_logger_name</span><span class="op">]</span><span class="op">,</span> <span class="str">"stream"</span><span class="op">)</span> <span class="op">!=</span> <span class="nam">low_level_stream</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">    <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par par2 ru2 show_par"><span class="n"><a id="t86" href="#t86">86</a></span><span class="t">        <span class="nam">getattr</span><span class="op">(</span><span class="nam">handlers_installed</span><span class="op">[</span><span class="nam">debug_logger_name</span><span class="op">]</span><span class="op">,</span> <span class="str">"stream"</span><span class="op">)</span> <span class="op">!=</span> <span class="nam">low_level_stream</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par par2 ru2 show_par"><span class="n"><a id="t87" href="#t87">87</a></span><span class="t">    <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t88" href="#t88">88</a></span><span class="t">        <span class="nam">debug_info</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">StreamHandler</span><span class="op">(</span><span class="nam">low_level_stream</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t89" href="#t89">89</a></span><span class="t">        <span class="nam">debug_info</span><span class="op">.</span><span class="nam">setLevel</span><span class="op">(</span><span class="nam">logging</span><span class="op">.</span><span class="nam">DEBUG</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t90" href="#t90">90</a></span><span class="t">        <span class="nam">debug_info</span><span class="op">.</span><span class="nam">setFormatter</span><span class="op">(</span><span class="nam">formatter</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -181,8 +181,8 @@
     <p class="pln"><span class="n"><a id="t97" href="#t97">97</a></span><span class="t">    <span class="com"># First check that logger with a matching name or stream is not already</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t98" href="#t98">98</a></span><span class="t">    <span class="com"># there before attaching a new one.</span>&nbsp;</span><span class="r"></span></p>
     <p class="par run show_par"><span class="n"><a id="t99" href="#t99">99</a></span><span class="t">    <span class="key">if</span> <span class="op">(</span><span class="nam">error_logger_name</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">handlers_installed</span><span class="op">)</span> <span class="key">or</span> <span class="op">(</span>&nbsp;</span><span class="r"><span class="annotate short">99&#x202F;&#x219B;&#x202F;108</span><span class="annotate long">line 99 didn't jump to line 108 because the condition on line 99 was always true</span></span></p>
-    <p class="pln"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">        <span class="nam">getattr</span><span class="op">(</span><span class="nam">handlers_installed</span><span class="op">[</span><span class="nam">error_logger_name</span><span class="op">]</span><span class="op">,</span> <span class="str">"stream"</span><span class="op">)</span> <span class="op">!=</span> <span class="nam">high_level_stream</span>&nbsp;</span><span class="r"></span></p>
-    <p class="pln"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">    <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par par2 ru2 show_par"><span class="n"><a id="t100" href="#t100">100</a></span><span class="t">        <span class="nam">getattr</span><span class="op">(</span><span class="nam">handlers_installed</span><span class="op">[</span><span class="nam">error_logger_name</span><span class="op">]</span><span class="op">,</span> <span class="str">"stream"</span><span class="op">)</span> <span class="op">!=</span> <span class="nam">high_level_stream</span>&nbsp;</span><span class="r"></span></p>
+    <p class="par par2 ru2 show_par"><span class="n"><a id="t101" href="#t101">101</a></span><span class="t">    <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t102" href="#t102">102</a></span><span class="t">        <span class="nam">warn_err</span> <span class="op">=</span> <span class="nam">logging</span><span class="op">.</span><span class="nam">StreamHandler</span><span class="op">(</span><span class="nam">high_level_stream</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t103" href="#t103">103</a></span><span class="t">        <span class="nam">warn_err</span><span class="op">.</span><span class="nam">setLevel</span><span class="op">(</span><span class="nam">logging</span><span class="op">.</span><span class="nam">WARNING</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t104" href="#t104">104</a></span><span class="t">        <span class="nam">warn_err</span><span class="op">.</span><span class="nam">setFormatter</span><span class="op">(</span><span class="nam">formatter</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -198,8 +198,8 @@
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="z_ac5b4134e26adf6e_rc_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.9.1">coverage.py v7.9.1</a>,
-            created at 2025-07-01 07:56 +0000
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.10.0">coverage.py v7.10.0</a>,
+            created at 2025-08-07 15:53 +0000
         </p>
     </div>
 </footer>
