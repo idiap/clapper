@@ -115,6 +115,19 @@ def test_commands_with_config_3():
     assert result.output.strip() == "3"
 
 
+def test_commands_with_config_4():
+    # test required options
+    @click.command(cls=ConfigCommand, entry_point_group="clapper.test.config")
+    @click.option("-a/-A", cls=ResourceOption)
+    def cli(a, **_):
+        click.echo(f"{a}")
+
+    runner = CliRunner()
+
+    result = runner.invoke(cli, [])
+    assert result.exit_code == 0
+
+
 def _assert_config_dump(output, ref, ref_date):
     with output.open("rt") as f, ref.open() as f2:
         diff = difflib.ndiff(f.readlines(), f2.readlines())
