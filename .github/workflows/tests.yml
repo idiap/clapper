@@ -26,9 +26,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup Pixi
-        uses: prefix-dev/setup-pixi@v0.8.14
+        uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          pixi-version: v0.46.0
+          pixi-version: v0.56.0
           environments: ${{ matrix.pixi_environment }}
       - name: Run Tests
         run: pixi run -e ${{ matrix.pixi_environment }} test-ci
@@ -84,9 +84,9 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup Pixi
-        uses: prefix-dev/setup-pixi@v0.8.14
+        uses: prefix-dev/setup-pixi@v0.9.1
         with:
-          pixi-version: v0.46.0
+          pixi-version: v0.56.0
           environments: doc
       - name: Build docs
         run: pixi run -e doc doc
@@ -104,7 +104,7 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       - name: Install build dependencies
         run: |
           pip install --upgrade pip
