@@ -12,7 +12,7 @@
 .. _toml: https://toml.io
 .. _tomli: https://pypi.org/project/tomli/
 .. _package entry-points: https://packaging.python.org/en/latest/specifications/entry-points/
-.. _click: http://click.pocoo.org/
+.. _click: http://click.palletsprojects.com/
 .. _click-plugins: https://github.com/click-contrib/click-plugins
 .. _logging-tree module: https://pypi.org/project/logging_tree/
 .. _xdg-defaults: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html

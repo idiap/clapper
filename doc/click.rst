@@ -9,7 +9,7 @@
  Command-Line Helpers
 ======================
 
-This package provides a few handy additions to the :py:mod:`click` command-line
+This package provides a few handy additions to the click_ command-line
 interface (CLI) library, allowing one to build even more powerful CLIs.
 
 
@@ -18,7 +18,7 @@ interface (CLI) library, allowing one to build even more powerful CLIs.
 Verbosity Option
 ----------------
 
-The :py:func:`clapper.click.verbosity_option` :py:mod:`click` decorator allows
+The :py:func:`clapper.click.verbosity_option` click_ decorator allows
 one to control the logging-level of a pre-defined :py:class:logging.Logger.
 Here is an example usage.
 
@@ -69,7 +69,7 @@ The :py:class:`clapper.click.ConfigCommand` is a type of
 :py:class:`click.Command` in which declared CLI options may be either passed
 via the command-line, or loaded from a :ref:`clapper.config`.  It works by
 reading the Python configuration file and filling up option values pretty much
-as :py:mod:`click` would do, with one exception: CLI options can now be of any
+as click_ would do, with one exception: CLI options can now be of any
 Pythonic type.
 
 To implement this, a CLI implemented via :py:class:`clapper.click.ConfigCommand`
@@ -144,7 +144,7 @@ Aliased Command Groups
 
 When designing an CLI with multiple subcommands, it is sometimes useful to be
 able to shorten command names.  For example, being able to use ``git ci``
-instead of ``git commit``, is a form of aliasing.  To do so in :py:mod:`click`
+instead of ``git commit``, is a form of aliasing.  To do so in click_
 CLIs, it suffices to subclass all command group instances with
 :py:class:`clapper.click.AliasedGroup`.  This should include groups and
 subgroups of any depth in your CLI.  Here is an example usage:
@@ -283,8 +283,8 @@ entry-points`_ (plugin) mechanism.
 Log Parameters
 --------------
 
-The :py:func:`clapper.click.log_parameters` :py:mod:`click` method allows
-one to log the parameters used within the current click context and their value for debuging purposes.
+The :py:func:`clapper.click.log_parameters` click_ method allows one to log the
+parameters used within the current click context and their value for debuging purposes.
 Here is an example usage.
 
 .. code-block:: python
