@@ -361,6 +361,12 @@ class ResourceOption(click.Option):
         # if "default" is not set, set it to None to recover old behaviour
         if kwargs.get("default") is UNSET:
             kwargs["default"] = None
+            if is_flag:
+                kwargs["default"] = False
+
+        # if param_decls contains "/" we set is_flag by default
+        if any(["/" in k for k in param_decls]):
+            is_flag = True
 
         # By default, if unspecified, click options are converted to strings.
         # By using ResourceOption's, however, we allow for complex user types
