@@ -1,0 +1,11 @@
+{
+  "click": {
+    "versions": {
+      "latest": "https://click.palletsprojects.com/en/latest",
+      "stable": "https://click.palletsprojects.com/en/stable"
+    },
+    "sources": {
+      "readthedocs": "click"
+    }
+  }
+}

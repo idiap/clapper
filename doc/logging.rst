@@ -27,8 +27,8 @@ does.  To use it in an application, follow this pattern:
    INFO: test message
 
 
-To help with setting the base logger level via the CLI, we provide a
-:py:mod:`click` :ref:`clapper.click.verbosity`.  A full example can be seen at
+To help with setting the base logger level via the CLI, we provide a click_
+:ref:`clapper.click.verbosity`.  A full example can be seen at
 :ref:`clapper.click.configcommand` and :ref:`clapper.click.rc_helpers`.
 
 
