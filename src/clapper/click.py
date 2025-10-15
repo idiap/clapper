@@ -15,11 +15,13 @@ import time
 import typing
 
 from importlib.metadata import EntryPoint
+from importlib.metadata import version as pkg_version
 
 import click
 import tomli
 
 from click.core import ParameterSource
+from packaging.version import InvalidVersion, Version
 
 from .config import load, mod_to_context, resource_keys
 from .rc import UserDefaults
@@ -29,6 +31,17 @@ module_logger = logging.getLogger(__name__)
 
 _COMMON_CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 """Common click context settings."""
+
+# As of version 8.3.0, click defines an "UNSET" sentinel, that is applicable to
+# "is_flag" and "default" option parameters, to distinguish cases in which the user sets
+# the default to "None".
+try:
+    if Version(pkg_version("click")) >= Version("8.3.0"):
+        UNSET = click.core.UNSET  # type: ignore[reportPrivateImportUsage]
+    else:
+        UNSET = None
+except InvalidVersion:
+    UNSET = None
 
 
 def verbosity_option(
@@ -96,7 +109,7 @@ def verbosity_option(
                 1: logging.WARNING,
                 2: logging.INFO,
                 3: logging.DEBUG,
-            }[value]
+            }[value or dflt]
 
             logger.setLevel(log_level)
             logger.debug(f'Level of Logger("{logger.name}") was set to {log_level}')
@@ -240,7 +253,10 @@ will override the values of configuration files. You can run this command with
                 # we can only handle ResourceOptions
                 continue
 
-            config_file.write(f"\n# {param.name} = {str(param.default)}\n")
+            if param.default is UNSET:
+                config_file.write(f"\n# {param.name} = None\n")
+            else:
+                config_file.write(f"\n# {param.name} = {str(param.default)}\n")
             config_file.write('"""')
 
             if param.required:
@@ -331,7 +347,7 @@ class ResourceOption(click.Option):
         confirmation_prompt=False,
         hide_input=False,
         is_flag=None,
-        flag_value=None,
+        flag_value=UNSET,
         multiple=False,
         count=False,
         allow_from_autoenv=True,
@@ -342,6 +358,10 @@ class ResourceOption(click.Option):
         string_exceptions=None,
         **kwargs,
     ) -> None:
+        # if "default" is not set, set it to None to recover old behaviour
+        if kwargs.get("default") is UNSET:
+            kwargs["default"] = None
+
         # By default, if unspecified, click options are converted to strings.
         # By using ResourceOption's, however, we allow for complex user types
         # to be set into options. So, if no specific ``type``, a ``default``,
@@ -351,7 +371,7 @@ class ResourceOption(click.Option):
             (type is None)
             and (kwargs.get("default") is None)
             and (count is False)
-            and (is_flag is None)
+            and (is_flag is UNSET)
         ):
             type = CustomParamType()  # noqa: A001
 
