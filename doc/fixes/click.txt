@@ -1,0 +1,5 @@
+# Sphinx inventory version 2
+# Project: Click
+# Version: 8.3.x
+# The remainder of this file is compressed using zlib.
+click py:module 1 index.html -

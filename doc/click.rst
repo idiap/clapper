@@ -9,7 +9,7 @@
  Command-Line Helpers
 ======================
 
-This package provides a few handy additions to the click_ command-line
+This package provides a few handy additions to the :py:mod:`click` command-line
 interface (CLI) library, allowing one to build even more powerful CLIs.
 
 
@@ -18,9 +18,9 @@ interface (CLI) library, allowing one to build even more powerful CLIs.
 Verbosity Option
 ----------------
 
-The :py:func:`clapper.click.verbosity_option` click_ decorator allows
-one to control the logging-level of a pre-defined :py:class:logging.Logger.
-Here is an example usage.
+The :py:func:`clapper.click.verbosity_option` :py:mod:`click` decorator allows one to
+control the logging-level of a pre-defined :py:class:logging.Logger. Here is an example
+usage.
 
 .. code-block:: python
 
@@ -65,24 +65,22 @@ with the appropriate logging level, mapped as such:
 Config Command
 --------------
 
-The :py:class:`clapper.click.ConfigCommand` is a type of
-:py:class:`click.Command` in which declared CLI options may be either passed
-via the command-line, or loaded from a :ref:`clapper.config`.  It works by
-reading the Python configuration file and filling up option values pretty much
-as click_ would do, with one exception: CLI options can now be of any
-Pythonic type.
+The :py:class:`clapper.click.ConfigCommand` is a type of :py:class:`click.Command` in
+which declared CLI options may be either passed via the command-line, or loaded from a
+:ref:`clapper.config`.  It works by reading the Python configuration file and filling up
+option values pretty much as :py:mod:`click` would do, with one exception: CLI options
+can now be of any Pythonic type.
 
-To implement this, a CLI implemented via :py:class:`clapper.click.ConfigCommand`
-may not declare any arguments, only options.  All arguments are interpreted as
-configuration files, from where option values will be set, in order.  Any type
-of configuration resource can be provided (file paths, python modules or
-entry-points).  Command-line options take precedence over values set in
-configuration files.  The order of configuration files matters, and the final
-values for CLI options follow the same rules as in
-:ref:`clapper.config.chain-loading`.
+To implement this, a CLI implemented via :py:class:`clapper.click.ConfigCommand` may not
+declare any arguments, only options.  All arguments are interpreted as configuration
+files, from where option values will be set, in order.  Any type of configuration
+resource can be provided (file paths, python modules or entry-points).  Command-line
+options take precedence over values set in configuration files.  The order of
+configuration files matters, and the final values for CLI options follow the same rules
+as in :ref:`clapper.config.chain-loading`.
 
-Options that may be read from configuration files must also be marked with the
-custom click-type :py:class:`clapper.click.ResourceOption`.
+Options that may be read from configuration files must also be marked with the custom
+click-type :py:class:`clapper.click.ResourceOption`.
 
 Here is an example usage of this class:
 
@@ -110,9 +108,9 @@ Notice that configuration options on the command-line take precedence:
 
 Configuration options can also be loaded from `package entry-points`_ named
 ``test.app``.  To do this, a package setup would have to contain a group named
-``test.app``, and list entry-point names which point to modules containing
-variables that can be loaded by the CLI application.  For example, would a
-package declare this entry-point:
+``test.app``, and list entry-point names which point to modules containing variables
+that can be loaded by the CLI application.  For example, would a package declare this
+entry-point:
 
 .. code-block:: python
 
@@ -131,10 +129,9 @@ Then, the application shown above would also be able to work like this:
    python example_cli.py my-config
 
 
-Options with type :py:class:`clapper.click.ResourceOption` may also point to
-individual resources (specific variables on python modules). This may be,
-however, a more seldomly used feature.  Read the class documentation for
-details.
+Options with type :py:class:`clapper.click.ResourceOption` may also point to individual
+resources (specific variables on python modules). This may be, however, a more seldomly
+used feature.  Read the class documentation for details.
 
 
 .. _clapper.click.aliasedgroups:
@@ -142,12 +139,11 @@ details.
 Aliased Command Groups
 ----------------------
 
-When designing an CLI with multiple subcommands, it is sometimes useful to be
-able to shorten command names.  For example, being able to use ``git ci``
-instead of ``git commit``, is a form of aliasing.  To do so in click_
-CLIs, it suffices to subclass all command group instances with
-:py:class:`clapper.click.AliasedGroup`.  This should include groups and
-subgroups of any depth in your CLI.  Here is an example usage:
+When designing an CLI with multiple subcommands, it is sometimes useful to be able to
+shorten command names.  For example, being able to use ``git ci`` instead of ``git
+commit``, is a form of aliasing.  To do so in :py:mod:`click` CLIs, it suffices to
+subclass all command group instances with :py:class:`clapper.click.AliasedGroup`.  This
+should include groups and subgroups of any depth in your CLI.  Here is an example usage:
 
 
 .. literalinclude:: example_alias.py
@@ -164,12 +160,12 @@ You may then shorten the command to be called such as this:
 Experiment Options (Config) Command-Group
 -----------------------------------------
 
-When building complex CLIs in which support for `configuration
-<:ref:clapper.config>`_ is required, it may be convenient to provide users with
-CLI subcommands to display configuration resources (examples) shipped with the
-package.  To this end, we provide an easy to plug :py:class:`click.Group`
-decorator that attaches a few useful subcommands to a predefined CLI command,
-from your package.  Here is an example on how to build a CLI to do this:
+When building complex CLIs in which support for `configuration <:ref:clapper.config>`_
+is required, it may be convenient to provide users with CLI subcommands to display
+configuration resources (examples) shipped with the package.  To this end, we provide an
+easy to plug :py:class:`click.Group` decorator that attaches a few useful subcommands to
+a predefined CLI command, from your package.  Here is an example on how to build a CLI
+to do this:
 
 
 .. literalinclude:: example_config.py
@@ -233,10 +229,10 @@ Global Configuration (RC) Command-Group
 
 When building complex CLIs in which support for `global configuration
 <:ref:clapper.rc>`_ is required, it may be convenient to provide users with CLI
-subcommands to display current values, set or get the value of specific
-configuration variables.  For example, the ``git`` CLI provides the ``git
-config`` command that fulfills this task.  Here is an example on how to build a
-CLI to affect your application's global RC file:
+subcommands to display current values, set or get the value of specific configuration
+variables.  For example, the ``git`` CLI provides the ``git config`` command that
+fulfills this task.  Here is an example on how to build a CLI to affect your
+application's global RC file:
 
 
 .. literalinclude:: example_defaults.py
@@ -283,7 +279,7 @@ entry-points`_ (plugin) mechanism.
 Log Parameters
 --------------
 
-The :py:func:`clapper.click.log_parameters` click_ method allows one to log the
+The :py:func:`clapper.click.log_parameters` :py:mod:`click` method allows one to log the
 parameters used within the current click context and their value for debuging purposes.
 Here is an example usage.
 
@@ -300,8 +296,8 @@ Here is an example usage.
    def cli(verbose):
       clapper.click.log_parameters(logger)
 
-A pre-defined :py:class:`logging.Logger` have to be provided and, optionally,
-a list of parameters to ignore can be provided as well, as a Tuple.
+A pre-defined :py:class:`logging.Logger` have to be provided and, optionally, a list of
+parameters to ignore can be provided as well, as a Tuple.
 
 
 .. include:: links.rst

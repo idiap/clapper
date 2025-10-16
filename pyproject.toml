@@ -14,7 +14,10 @@ requires-python = ">=3.11"
 description = "Configuration Support for Python Packages and CLIs"
 readme = "README.md"
 license = "BSD-3-Clause"
-authors = [{ name = "Andre Anjos", email = "andre.anjos@idiap.ch" }, { name = "Amir Mohammadi", email = "amir.mohammadi@idiap.ch" }]
+authors = [
+  { name = "Andre Anjos", email = "andre.anjos@idiap.ch" },
+  { name = "Amir Mohammadi", email = "amir.mohammadi@idiap.ch" },
+]
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
@@ -41,6 +44,7 @@ doc = [
   "auto-intersphinx",
   "sphinx-copybutton",
   "sphinx-inline-tabs",
+  "sphobjinv",
 ]
 test = ["pytest", "pytest-cov"]
 dev = ["pdbpp", "clapper[doc,qa,test]"]
@@ -97,10 +101,12 @@ sphinx-copybutton = "*"
 sphinx-inline-tabs = "*"
 sphinxcontrib-programoutput = "*"
 auto-intersphinx = "*"
+sphobjinv = "*"
 
 [tool.pixi.feature.doc.tasks]
+extras = "sphobjinv convert -o zlib doc/fixes/click.txt doc/fixes/click.inv"
 doc-clean = "rm -rf doc/api && rm -rf html"
-doc = "sphinx-build -aEW doc html"
+doc = { cmd = "sphinx-build -aEW doc html", depends-on = ["extras"] }
 doctest = "sphinx-build -aEb doctest doc html/doctest"
 
 [tool.pixi.feature.test.dependencies]
@@ -116,13 +122,31 @@ pdbpp = "*"
 uv = "*"
 
 [tool.pixi.environments]
-default = { features = ["qa", "doc", "test", "dev", "py312"], solve-group = "default" }
+default = { features = [
+  "qa",
+  "doc",
+  "test",
+  "dev",
+  "py312",
+], solve-group = "default" }
 qa = { features = ["qa", "py312"], solve-group = "default" }
 test = { features = ["test", "py312"], solve-group = "default" }
 doc = { features = ["doc", "py312"], solve-group = "default" }
-dev = { features = ["dev", "qa", "doc", "test", "py312"], solve-group = "default" }
+dev = { features = [
+  "dev",
+  "qa",
+  "doc",
+  "test",
+  "py312",
+], solve-group = "default" }
 
-alternative = { features = ["qa", "doc", "test", "dev", "py311"], solve-group = "alternative" }
+alternative = { features = [
+  "qa",
+  "doc",
+  "test",
+  "dev",
+  "py311",
+], solve-group = "alternative" }
 test-alternative = { features = ["test", "py311"], solve-group = "alternative" }
 
 [tool.hatch.version]

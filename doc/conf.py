@@ -118,6 +118,11 @@ autodoc_default_options = {
 auto_intersphinx_packages = [("python", "3"), "click"]
 auto_intersphinx_catalog = "catalog.json"
 
+# Add our private indexes (for extras and fixes)
+intersphinx_mapping = {
+    "fixes-click": ("https://click.palletsprojects.com/en/stable/", "fixes/click.inv")
+}
+
 # Doctest global setup
 sphinx_source_dir = pathlib.Path.cwd().resolve()
 doctest_global_setup = f"""
