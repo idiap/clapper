@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-"""Helpers to build command-line interfaces (CLI) via click."""
+"""Helpers to build command-line interfaces (CLI) via :py:mod:`click`."""
 
 import functools
 import inspect
@@ -97,8 +97,8 @@ def verbosity_option(
 
     Returns
     -------
-        A callable, that follows the click-framework policy for option decorators.  Use
-        it accordingly.
+        A callable, that follows the :py:mod:`click`-framework policy for option
+        decorators.  Use it accordingly.
     """
 
     def custom_verbosity_option(f):
