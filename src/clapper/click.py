@@ -438,30 +438,42 @@ class ResourceOption(click.Option):
             )
 
         module_logger.debug(f"consuming resource option for {self.name}")
-        value = opts.get(self.name)
-        source = ParameterSource.COMMANDLINE
+
+        # Collect from the parse the value passed by the user to the CLI.
+        value = opts.get(self.name, UNSET)  # type: ignore
+        # If the value is set, it means it was sourced from the command line by the
+        # parser, otherwise it left unset by default.
+        source = (
+            ParameterSource.COMMANDLINE
+            if value is not UNSET
+            else ParameterSource.DEFAULT
+        )
 
         # if value is not given from command line, lookup the config files given as
         # arguments (not options).
-        if value is None:
+        if value is UNSET:
             # if this class is used with the ConfigCommand class. This is not always
             # true.
             if hasattr(ctx, "config_context"):
-                value = ctx.config_context.get(self.name)
+                value = ctx.config_context.get(self.name, UNSET)
 
-        # if not from config files, lookup the environment variables
-        if value is None:
-            value = self.value_from_envvar(ctx)
-            source = ParameterSource.ENVIRONMENT
+        if value is UNSET:
+            envvar_value = self.value_from_envvar(ctx)
+            if envvar_value is not None:
+                value = envvar_value
+                source = ParameterSource.ENVIRONMENT
 
-        # if not from environment variables, lookup the default value
-        if value is None:
-            value = ctx.lookup_default(self.name)
-            source = ParameterSource.DEFAULT_MAP
+        if value is UNSET:
+            default_map_value = ctx.lookup_default(self.name)  # type: ignore
+            if default_map_value is not UNSET:
+                value = default_map_value
+                source = ParameterSource.DEFAULT_MAP
 
-        if value is None:
-            value = self.get_default(ctx)
-            source = ParameterSource.DEFAULT
+        if value is UNSET:
+            default_value = self.get_default(ctx)
+            if default_value is not UNSET:
+                value = default_value
+                source = ParameterSource.DEFAULT
 
         return value, source
 
@@ -522,7 +534,6 @@ class AliasedGroup(click.Group):
             return click.Group.get_command(self, ctx, matches[0])
 
         ctx.fail(f"Too many matches: {', '.join(sorted(matches))}")  # noqa: RET503
-
 
 def user_defaults_group(
     logger: logging.Logger,
