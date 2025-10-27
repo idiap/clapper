@@ -128,6 +128,34 @@ def test_commands_with_config_4():
     assert result.exit_code == 0
 
 
+def test_commands_with_config_5():
+    # test required options
+    @click.command(cls=ConfigCommand, entry_point_group="clapper.test.config")
+    @click.option("-a", default=42, required=True, cls=ResourceOption)
+    def cli(a, **_):
+        click.echo(f"{a}")
+
+    runner = CliRunner()
+
+    result = runner.invoke(cli, [])
+    assert result.exit_code == 0
+    assert result.output.strip() == "42"
+
+
+def test_commands_with_config_6():
+    # test unprocessed options
+    @click.command(cls=ConfigCommand, entry_point_group="clapper.test.config")
+    @click.option("-a", type=click.UNPROCESSED, default=[], cls=ResourceOption)
+    def cli(a, **_):
+        click.echo(f"{a}")
+
+    runner = CliRunner()
+
+    result = runner.invoke(cli, [])
+    assert result.exit_code == 0
+    assert result.output.strip() == "[]"
+
+
 def _assert_config_dump(output, ref, ref_date):
     with output.open("rt") as f, ref.open() as f2:
         diff = difflib.ndiff(f.readlines(), f2.readlines())
