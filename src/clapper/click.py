@@ -377,7 +377,7 @@ class ResourceOption(click.Option):
             (type is None)
             and (kwargs.get("default") is None)
             and (count is False)
-            and (is_flag is UNSET)
+            and (is_flag is None)
         ):
             type = CustomParamType()  # noqa: A001
 
