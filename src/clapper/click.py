@@ -535,6 +535,7 @@ class AliasedGroup(click.Group):
 
         ctx.fail(f"Too many matches: {', '.join(sorted(matches))}")  # noqa: RET503
 
+
 def user_defaults_group(
     logger: logging.Logger,
     config: UserDefaults,
