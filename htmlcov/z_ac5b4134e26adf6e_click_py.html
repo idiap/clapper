@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src/clapper/click.py: 94%</title>
+    <title>Coverage for src/clapper/click.py: 95%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_6b508a39.css" type="text/css">
     <script src="coverage_html_cb_6fb7b396.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src/clapper/click.py</b>:
-            <span class="pc_cov">94%</span>
+            <span class="pc_cov">95%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -56,10 +56,10 @@
         </aside>
         <h2>
             <span class="text">299 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">290<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">9<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">291<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">8<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">2<span class="text"> excluded</span></button>
-            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">11<span class="text"> partial</span></button>
+            <button type="button" class="par run show_par button_toggle_par" value="par" data-shortcut="p" title="Toggle lines partially run">10<span class="text"> partial</span></button>
         </h2>
         <p class="text">
             <a id="prevFileLink" class="nav" href="index.html">&#xab; prev</a> &nbsp; &nbsp;
@@ -67,7 +67,7 @@
             <a id="nextFileLink" class="nav" href="z_ac5b4134e26adf6e_config_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-27 09:51 +0000
+            created at 2025-10-27 15:00 +0000
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -457,13 +457,13 @@
     <p class="pln"><span class="n"><a id="t373" href="#t373">373</a></span><span class="t">        <span class="com"># to be set into options. So, if no specific ``type``, a ``default``,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t374" href="#t374">374</a></span><span class="t">        <span class="com"># the ``count`` flag, or ``is_flag`` is given, we assume this is a</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t375" href="#t375">375</a></span><span class="t">        <span class="com"># "custom" parameter type, and do not convert values to strings.</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par run show_par"><span class="n"><a id="t376" href="#t376">376</a></span><span class="t">        <span class="key">if</span> <span class="op">(</span>&nbsp;</span><span class="r"><span class="annotate short">376&#x202F;&#x219B;&#x202F;382</span><span class="annotate long">line 376 didn't jump to line 382 because the condition on line 376 was never true</span></span></p>
-    <p class="par par2 ru2 show_par"><span class="n"><a id="t377" href="#t377">377</a></span><span class="t">            <span class="op">(</span><span class="nam">type</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par par2 ru2 show_par"><span class="n"><a id="t378" href="#t378">378</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">kwargs</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"default"</span><span class="op">)</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par par2 ru2 show_par"><span class="n"><a id="t379" href="#t379">379</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">count</span> <span class="key">is</span> <span class="key">False</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par par2 ru2 show_par"><span class="n"><a id="t380" href="#t380">380</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">is_flag</span> <span class="key">is</span> <span class="nam">UNSET</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p class="par par2 ru2 show_par"><span class="n"><a id="t381" href="#t381">381</a></span><span class="t">        <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="mis show_mis"><span class="n"><a id="t382" href="#t382">382</a></span><span class="t">            <span class="nam">type</span> <span class="op">=</span> <span class="nam">CustomParamType</span><span class="op">(</span><span class="op">)</span>  <span class="com"># noqa: A001</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t376" href="#t376">376</a></span><span class="t">        <span class="key">if</span> <span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t377" href="#t377">377</a></span><span class="t">            <span class="op">(</span><span class="nam">type</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t378" href="#t378">378</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">kwargs</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">"default"</span><span class="op">)</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t379" href="#t379">379</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">count</span> <span class="key">is</span> <span class="key">False</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t380" href="#t380">380</a></span><span class="t">            <span class="key">and</span> <span class="op">(</span><span class="nam">is_flag</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run run2"><span class="n"><a id="t381" href="#t381">381</a></span><span class="t">        <span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t382" href="#t382">382</a></span><span class="t">            <span class="nam">type</span> <span class="op">=</span> <span class="nam">CustomParamType</span><span class="op">(</span><span class="op">)</span>  <span class="com"># noqa: A001</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t383" href="#t383">383</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t384" href="#t384">384</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">entry_point_group</span> <span class="op">=</span> <span class="nam">entry_point_group</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t385" href="#t385">385</a></span><span class="t">        <span class="key">if</span> <span class="nam">entry_point_group</span> <span class="key">is</span> <span class="key">not</span> <span class="key">None</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -1012,7 +1012,7 @@
             <a class="nav" href="z_ac5b4134e26adf6e_config_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.11.0">coverage.py v7.11.0</a>,
-            created at 2025-10-27 09:51 +0000
+            created at 2025-10-27 15:00 +0000
         </p>
     </div>
 </footer>
