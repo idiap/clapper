@@ -16,12 +16,12 @@ Blablabla bli blo.
 
 # database = None
 """Required parameter: database (--database, -d)
-bla bla bla Can be a `clapper.test.config' entry point, a module name, or a path to a Python file which contains a variable named `database'.
+bla bla bla Can be a ``clapper.test.config`` entry point, a module name, or a path to a Python file which contains a variable named ``database``.
 Registered entries are: ['complex', 'complex-var', 'error-config', 'first', 'first-a', 'first-b', 'second', 'second-b', 'second-c', 'verbose-config']"""
 
 # annotator = None
 """Required parameter: annotator (--annotator, -a)
-bli bli bli Can be a `clapper.test.config' entry point, a module name, or a path to a Python file which contains a variable named `annotator'.
+bli bli bli Can be a ``clapper.test.config`` entry point, a module name, or a path to a Python file which contains a variable named ``annotator``.
 Registered entries are: ['complex', 'complex-var', 'error-config', 'first', 'first-a', 'first-b', 'second', 'second-b', 'second-c', 'verbose-config']"""
 
 # output_dir = None
