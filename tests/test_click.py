@@ -145,7 +145,7 @@ def test_commands_with_config_5():
 def test_resource_option_uses_option_default_when_default_map_is_absent(monkeypatch):
     def lookup_default(self, name, call=True):
         del self, name, call
-        return None
+        return
 
     monkeypatch.setattr(click.Context, "lookup_default", lookup_default)
 
