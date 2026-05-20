@@ -142,6 +142,46 @@ def test_commands_with_config_5():
     assert result.output.strip() == "42"
 
 
+def test_resource_option_uses_option_default_when_default_map_is_absent(monkeypatch):
+    def lookup_default(self, name, call=True):
+        del self, name, call
+        return None
+
+    monkeypatch.setattr(click.Context, "lookup_default", lookup_default)
+
+    @click.command(cls=ConfigCommand, entry_point_group="clapper.test.config")
+    @click.option(
+        "--parallel",
+        default=-1,
+        required=True,
+        type=click.IntRange(min=-1),
+        cls=ResourceOption,
+    )
+    def cli(parallel, **_):
+        click.echo(f"{parallel}")
+
+    runner = CliRunner()
+    result = runner.invoke(cli, [])
+    assert result.exit_code == 0
+    assert result.output.strip() == "-1"
+
+
+def test_resource_option_accepts_explicit_none_from_default_map():
+    @click.command(
+        cls=ConfigCommand,
+        entry_point_group="clapper.test.config",
+        context_settings={"default_map": {"value": None}},
+    )
+    @click.option("--value", default="fallback", cls=ResourceOption)
+    def cli(value, **_):
+        click.echo(f"{value!r}")
+
+    runner = CliRunner()
+    result = runner.invoke(cli, [])
+    assert result.exit_code == 0
+    assert result.output.strip() == "None"
+
+
 def test_commands_with_config_6():
     # test unprocessed options
     @click.command(cls=ConfigCommand, entry_point_group="clapper.test.config")
