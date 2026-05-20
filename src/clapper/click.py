@@ -386,8 +386,8 @@ class ResourceOption(click.Option):
             name, _, _ = self._parse_decls(param_decls, kwargs.get("expose_value"))
             help = help or ""  # noqa: A001
             help += (  # noqa: A001
-                f" Can be a `{entry_point_group}' entry point, a module name, or "
-                f"a path to a Python file which contains a variable named `{name}'."
+                f" Can be a ``{entry_point_group}`` entry point, a module name, or "
+                f"a path to a Python file which contains a variable named ``{name}``."
             )
             help = help.format(entry_point_group=entry_point_group, name=name)  # noqa: A001
 
