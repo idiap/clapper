@@ -297,6 +297,34 @@ class CustomParamType(click.ParamType):
     name = "custom"
 
 
+def _lookup_default_map_value(ctx: click.Context, name: str | None) -> typing.Any:
+    """Return a value from Click's default map, or ``UNSET`` when absent."""
+
+    if (
+        name is None
+        or ctx.default_map is None
+        or name not in ctx.default_map
+        or ctx.default_map[name] is UNSET
+    ):
+        return UNSET
+
+    value = ctx.default_map[name]
+    if callable(value):
+        return value()
+    return value
+
+
+def _get_option_default(option: click.Option) -> typing.Any:
+    """Return an option default without consulting Click's default map."""
+
+    value = option.default
+    if value is True and option.is_flag and not option.is_bool_flag:
+        value = option.flag_value
+    if callable(value):
+        return value()
+    return value
+
+
 class ResourceOption(click.Option):
     """An extended :py:class:`click.Option` that automatically loads resources
     from config files.
@@ -464,13 +492,13 @@ class ResourceOption(click.Option):
                 source = ParameterSource.ENVIRONMENT
 
         if value is UNSET:
-            default_map_value = ctx.lookup_default(self.name)  # type: ignore
+            default_map_value = _lookup_default_map_value(ctx, self.name)
             if default_map_value is not UNSET:
                 value = default_map_value
                 source = ParameterSource.DEFAULT_MAP
 
         if value is UNSET:
-            default_value = self.get_default(ctx)
+            default_value = _get_option_default(self)
             if default_value is not UNSET:
                 value = default_value
                 source = ParameterSource.DEFAULT
