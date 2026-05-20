@@ -61,7 +61,7 @@ complex-var = "tests.data.complex:cplx"
 verbose-config = "tests.data.verbose_config"
 error-config = "tests.data.doesnt_exist"
 
-[tool.pixi.project]
+[tool.pixi.workspace]
 channels = ["conda-forge"]
 platforms = ["linux-64", "osx-arm64"]
 
